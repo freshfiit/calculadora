@@ -1,34 +1,37 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
-
     <style>
-        body {
-            background: #0f0f0f;
-            color: #fff;
+        * {
+            box-sizing: border-box;
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        }
+
+        body {
             margin: 0;
+            background: #0f0f0f;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .box {
+        .card {
             background: #1a1a1a;
-            padding: 25px;
-            border-radius: 12px;
-            width: 330px;
+            width: 370px;
+            border-radius: 18px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+            padding: 30px;
             text-align: center;
-            box-shadow: 0 0 12px rgba(255,255,255,0.1);
         }
 
-        .logo {
-            width: 140px;
-            margin-bottom: 10px;
+        h1 {
+            color: #fff;
+            font-size: 22px;
+            margin-bottom: 20px;
         }
 
         input {
@@ -37,61 +40,61 @@
             margin: 8px 0;
             border-radius: 8px;
             border: none;
-            font-size: 16px;
+            outline: none;
         }
 
         button {
             width: 100%;
             padding: 12px;
-            margin-top: 12px;
-            background: #4CAF50;
+            background: #3fa34d;
+            color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 17px;
-            font-weight: bold;
+            border-radius: 8px;
+            font-size: 16px;
             cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #2e7d36;
         }
 
         #resultado {
             margin-top: 15px;
-            font-size: 20px;
-            font-weight: bold;
+            color: #ffffff;
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
 
-    <div class="box">
-
-        <!-- COLOQUE SUA LOGO AQUI -->
-        <img src="LOGO.png" class="logo" alt="Logo">
-
-        <h2>Calculadora</h2>
+    <div class="card">
+        <h1>Calculadora</h1>
 
         <input type="number" id="preco" placeholder="Preço">
         <input type="number" id="quantidade" placeholder="Quantidade">
 
         <button onclick="calcular()">Calcular</button>
 
-        <p id="resultado"></p>
-
+        <div id="resultado"></div>
     </div>
 
     <script>
         function calcular() {
-            const preco = parseFloat(document.getElementById("preco").value);
-            const quantidade = parseFloat(document.getElementById("quantidade").value);
-            const resultado = document.getElementById("resultado");
+            let preco = parseFloat(document.getElementById("preco").value);
+            let quantidade = parseFloat(document.getElementById("quantidade").value);
 
             if (!preco || !quantidade) {
-                resultado.innerText = "Preencha os dois campos!";
+                document.getElementById("resultado").innerHTML = "Preencha todos os campos!";
                 return;
             }
 
-            const total = preco * quantidade;
-            resultado.innerText = "Total: R$ " + total.toFixed(2);
+            let total = preco * quantidade;
 
-            // 🧹 LIMPA AUTOMATICAMENTE OS CAMPOS
+            document.getElementById("resultado").innerHTML = 
+                "Total: R$ " + total.toFixed(2);
+
+            // LIMPA OS CAMPOS APÓS CALCULAR
             document.getElementById("preco").value = "";
             document.getElementById("quantidade").value = "";
         }
