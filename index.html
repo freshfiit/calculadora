@@ -1,104 +1,122 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+<meta charset="UTF-8">
+<title>Calculadora</title>
+<style>
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
-        body {
-            margin: 0;
-            background: #0f0f0f;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+body {
+    margin: 0;
+    background: #0f8a3c;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        .card {
-            background: #1a1a1a;
-            width: 370px;
-            border-radius: 18px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.35);
-            padding: 30px;
-            text-align: center;
-        }
+.card {
+    background: #fff;
+    width: 370px;
+    border-radius: 18px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+    padding: 18px;
+}
 
-        h1 {
-            color: #fff;
-            font-size: 22px;
-            margin-bottom: 20px;
-        }
+h1 {
+    text-align: center;
+    margin: 8px 0 12px;
+    color: #0f8a3c;
+    font-size: 22px;
+}
 
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            border-radius: 8px;
-            border: none;
-            outline: none;
-        }
+.section {
+    font-weight: bold;
+    color: #333;
+    font-size: 15px;
+    margin: 10px 0 6px;
+}
 
-        button {
-            width: 100%;
-            padding: 12px;
-            background: #3fa34d;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
+.item {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0;
+    font-size: 14px;
+}
 
-        button:hover {
-            background: #2e7d36;
-        }
+input {
+    width: 60px;
+    padding: 5px;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
 
-        #resultado {
-            margin-top: 15px;
-            color: #ffffff;
-            font-size: 18px;
-        }
-    </style>
+button {
+    margin-top: 12px;
+    width: 100%;
+    padding: 12px;
+    background: #0f8a3c;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.total {
+    margin-top: 12px;
+    text-align: center;
+    font-weight: bold;
+    color: #0f8a3c;
+    font-size: 18px;
+}
+</style>
 </head>
 <body>
 
-    <div class="card">
-        <h1>Calculadora</h1>
+<div class="card">
+    <h1>Calculadora</h1>
 
-        <input type="number" id="preco" placeholder="Preço">
-        <input type="number" id="quantidade" placeholder="Quantidade">
+    <div class="section">Combos</div>
+    <div class="item"><span>Lasanha ($250)</span><input id="combo_lasanha" type="number" value="0"></div>
+    <div class="item"><span>Crepioca ($220)</span><input id="combo_crepioca" type="number" value="0"></div>
+    <div class="item"><span>Panqueca ($190)</span><input id="combo_panqueca" type="number" value="0"></div>
 
-        <button onclick="calcular()">Calcular</button>
+    <div class="section">Itens</div>
+    <div class="item"><span>Lasanha ($200)</span><input id="lasanha" type="number" value="0"></div>
+    <div class="item"><span>Crepioca ($170)</span><input id="crepioca" type="number" value="0"></div>
+    <div class="item"><span>Panqueca ($140)</span><input id="panqueca" type="number" value="0"></div>
+    <div class="item"><span>Água ($50)</span><input id="agua" type="number" value="0"></div>
+    <div class="item"><span>Chocolate ($150)</span><input id="choco" type="number" value="0"></div>
+    <div class="item"><span>Energético ($350)</span><input id="energetico" type="number" value="0"></div>
+    <div class="item"><span>Café ($450)</span><input id="cafe" type="number" value="0"></div>
 
-        <div id="resultado"></div>
-    </div>
+    <button onclick="calcular()">Somar</button>
+    <div class="total">Total: $ <span id="resultado">0</span></div>
+</div>
 
-    <script>
-        function calcular() {
-            let preco = parseFloat(document.getElementById("preco").value);
-            let quantidade = parseFloat(document.getElementById("quantidade").value);
+<script>
+function calcular(){
+    let total =
+        combo_lasanha.value * 250 +
+        combo_crepioca.value * 220 +
+        combo_panqueca.value * 190 +
+        lasanha.value * 200 +
+        crepioca.value * 170 +
+        panqueca.value * 140 +
+        agua.value * 50 +
+        choco.value * 150 +
+        energetico.value * 350 +
+        cafe.value * 450;
 
-            if (!preco || !quantidade) {
-                document.getElementById("resultado").innerHTML = "Preencha todos os campos!";
-                return;
-            }
-
-            let total = preco * quantidade;
-
-            document.getElementById("resultado").innerHTML = 
-                "Total: R$ " + total.toFixed(2);
-
-            // LIMPA OS CAMPOS APÓS CALCULAR
-            document.getElementById("preco").value = "";
-            document.getElementById("quantidade").value = "";
-        }
-    </script>
+    resultado.innerText = total;
+}
+</script>
 
 </body>
 </html>
