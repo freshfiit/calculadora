@@ -1,165 +1,179 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Calculadora</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora Fresh&Fit</title>
 
-<style>
-* {
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: #048c2c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
 
-body {
-    margin: 0;
-    background: #0f8a3c;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
+        .card {
+            width: 340px;             
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            text-align: center;
+        }
 
-.card {
-    background: #fff;
-    width: 380px;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.35);
-    padding: 25px;
-}
+        .logo {
+            width: 160px;
+            margin: 0 auto 10px auto;
+        }
 
-.logo {
-    width: 160px;
-    display: block;
-    margin: 0 auto 10px auto;
-    filter: drop-shadow(0 8px 18px rgba(0,0,0,0.28));
-}
+        h2 {
+            margin-top: 5px;
+            color: #0a651e;
+            font-size: 20px;
+            font-weight: bold;
+        }
 
-h1 {
-    text-align: center;
-    margin: 5px 0 15px;
-    color: #0f8a3c;
-    font-size: 26px;
-    font-weight: bold;
-}
+        h3 {
+            text-align: left;
+            color: #0a651e;
+            margin-bottom: 5px;
+            margin-top: 20px;
+            font-size: 15px;
+        }
 
-.section {
-    font-weight: bold;
-    color: #0f8a3c;
-    font-size: 15px;
-    margin: 14px 0 8px;
-    border-left: 4px solid #0f8a3c;
-    padding-left: 8px;
-}
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 6px 0;
+            font-size: 14px;
+        }
 
-.item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 8px 0;
-    font-size: 15px;
-}
+        input {
+            width: 45px;
+            padding: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            text-align: center;
+        }
 
-input {
-    width: 70px;
-    padding: 7px;
-    font-size: 15px;
-    text-align: center;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    transition: .2s;
-}
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            background: #048c2c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
 
-input:focus {
-    border-color: #0f8a3c;
-    outline: none;
-    box-shadow: 0 0 5px rgba(15,138,60,0.4);
-}
+        button:hover {
+            background: #036d22;
+        }
 
-button {
-    margin-top: 18px;
-    width: 100%;
-    padding: 14px;
-    background: #0f8a3c;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: .2s;
-}
-
-button:hover {
-    background: #0c6f31;
-}
-
-.total {
-    margin-top: 18px;
-    text-align: center;
-    font-weight: bold;
-    color: #0f8a3c;
-    font-size: 20px;
-}
-</style>
+        .total {
+            margin-top: 18px;
+            font-size: 17px;
+            font-weight: bold;
+            color: #0a651e;
+        }
+    </style>
 </head>
 <body>
 
-<div class="card">
+    <div class="card">
 
-    <!-- LOGO -->
-    <img src="logo_transparent_outline.png" class="logo" alt="Logo Fresh&Fit">
+        <img class="logo" src="logo.png" alt="Fresh&Fit">
 
-    <h1>Calculadora</h1>
+        <h2>Calculadora</h2>
 
-    <div class="section">Combos</div>
-    <div class="item"><span>Lasanha (R$ 250)</span><input id="combo_lasanha" type="number" value="0"></div>
-    <div class="item"><span>Crepioca (R$ 220)</span><input id="combo_crepioca" type="number" value="0"></div>
-    <div class="item"><span>Panqueca (R$ 190)</span><input id="combo_panqueca" type="number" value="0"></div>
+        <h3>▎ Combos</h3>
 
-    <div class="section">Itens</div>
-    <div class="item"><span>Lasanha (R$ 200)</span><input id="lasanha" type="number" value="0"></div>
-    <div class="item"><span>Crepioca (R$ 170)</span><input id="crepioca" type="number" value="0"></div>
-    <div class="item"><span>Panqueca (R$ 140)</span><input id="panqueca" type="number" value="0"></div>
-    <div class="item"><span>Água (R$ 50)</span><input id="agua" type="number" value="0"></div>
-    <div class="item"><span>Chocolate (R$ 150)</span><input id="choco" type="number" value="0"></div>
-    <div class="item"><span>Energético (R$ 350)</span><input id="energetico" type="number" value="0"></div>
-    <div class="item"><span>Café (R$ 450)</span><input id="cafe" type="number" value="0"></div>
+        <div class="item">
+            <span>Lasanha (R$ 250)</span>
+            <input id="c_lasanha" type="number" value="0" min="0">
+        </div>
 
-    <button onclick="calcular()">Somar</button>
+        <div class="item">
+            <span>Crepioca (R$ 220)</span>
+            <input id="c_crepioca" type="number" value="0" min="0">
+        </div>
 
-    <div class="total">Total: R$ <span id="resultado">0</span></div>
-</div>
+        <div class="item">
+            <span>Panqueca (R$ 190)</span>
+            <input id="c_panqueca" type="number" value="0" min="0">
+        </div>
 
-<script>
-function calcular() {
+        <h3>▎ Itens</h3>
 
-    let total =
-        combo_lasanha.value * 250 +
-        combo_crepioca.value * 220 +
-        combo_panqueca.value * 190 +
-        lasanha.value * 200 +
-        crepioca.value * 170 +
-        panqueca.value * 140 +
-        agua.value * 50 +
-        choco.value * 150 +
-        energetico.value * 350 +
-        cafe.value * 450;
+        <div class="item">
+            <span>Lasanha (R$ 200)</span>
+            <input id="i_lasanha" type="number" value="0" min="0">
+        </div>
 
-    resultado.innerText = total.toLocaleString("pt-BR");
+        <div class="item">
+            <span>Crepioca (R$ 170)</span>
+            <input id="i_crepioca" type="number" value="0" min="0">
+        </div>
 
-    combo_lasanha.value = 0;
-    combo_crepioca.value = 0;
-    combo_panqueca.value = 0;
-    lasanha.value = 0;
-    crepioca.value = 0;
-    panqueca.value = 0;
-    agua.value = 0;
-    choco.value = 0;
-    energetico.value = 0;
-    cafe.value = 0;
-}
-</script>
+        <div class="item">
+            <span>Panqueca (R$ 140)</span>
+            <input id="i_panqueca" type="number" value="0" min="0">
+        </div>
+
+        <div class="item">
+            <span>Água (R$ 50)</span>
+            <input id="agua" type="number" value="0" min="0">
+        </div>
+
+        <div class="item">
+            <span>Chocolate (R$ 150)</span>
+            <input id="chocolate" type="number" value="0" min="0">
+        </div>
+
+        <div class="item">
+            <span>Energético (R$ 350)</span>
+            <input id="energetico" type="number" value="0" min="0">
+        </div>
+
+        <div class="item">
+            <span>Café (R$ 450)</span>
+            <input id="cafe" type="number" value="0" min="0">
+        </div>
+
+        <button onclick="somar()">Somar</button>
+
+        <div class="total" id="total">Total: R$ 0</div>
+
+    </div>
+
+    <script>
+        function somar() {
+            let total = 
+                (document.getElementById("c_lasanha").value * 250) +
+                (document.getElementById("c_crepioca").value * 220) +
+                (document.getElementById("c_panqueca").value * 190) +
+
+                (document.getElementById("i_lasanha").value * 200) +
+                (document.getElementById("i_crepioca").value * 170) +
+                (document.getElementById("i_panqueca").value * 140) +
+
+                (document.getElementById("agua").value * 50) +
+                (document.getElementById("chocolate").value * 150) +
+                (document.getElementById("energetico").value * 350) +
+                (document.getElementById("cafe").value * 450);
+
+            document.getElementById("total").innerText = "Total: R$ " + total;
+        }
+    </script>
 
 </body>
 </html>
